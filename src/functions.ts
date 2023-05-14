@@ -79,9 +79,6 @@ export const checkNeighbors = (board: number[][]) => {
   return newBoard;
 };
 
-const board: number[][] = [[], [], []];
-console.log(checkNeighbors(board));
-
 export const getNewCells = (board: number[][]) => {
   const newCellsBoard = checkNeighbors(board);
 

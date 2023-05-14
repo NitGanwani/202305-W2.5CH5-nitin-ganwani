@@ -1,7 +1,7 @@
 import { createBoard, displayBoard, getNewCells } from "./functions.js";
 
 const playGame = () => {
-  const board = createBoard(15, 30);
+  const board: number[][] = createBoard(15, 30);
 
   setInterval(() => {
     console.clear();
