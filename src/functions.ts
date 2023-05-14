@@ -79,6 +79,12 @@ export const checkNeighbors = (board: number[][]) => {
   return newBoard;
 };
 
+const board: number[][] = [
+  [0, 0, 1],
+  [1, 1, 0],
+  [0, 1, 0],
+];
+console.log(checkNeighbors(board));
 export const getNewCells = (board: number[][]) => {
   const newCellsBoard = checkNeighbors(board);
 
@@ -104,9 +110,3 @@ export const getNewCells = (board: number[][]) => {
 
   return board;
 };
-
-const board = createBoard(5, 5);
-console.log(board);
-checkNeighbors(board);
-getNewCells(board);
-console.log(displayBoard(board));
