@@ -17,6 +17,18 @@ describe("Given a createBoard function", () => {
       expect(correctResult[0].length).toBe(2);
     });
   });
+
+  describe("When it receives 3 and NaN", () => {
+    test("Then it should return [[], [], []]", () => {
+      const rows = 3;
+      const cols = NaN;
+      const expected = [[], [], []];
+
+      const correctResult = createBoard(rows, cols);
+
+      expect(correctResult).toStrictEqual(expected);
+    });
+  });
 });
 
 describe("Given a displayBoard function", () => {
@@ -28,6 +40,17 @@ describe("Given a displayBoard function", () => {
         [0, 1, 0],
       ];
       const expected = `⬛⬛⬜\n⬜⬜⬛\n⬛⬜⬛\n`;
+
+      const correctResult = displayBoard(board);
+
+      expect(correctResult).toBe(expected);
+    });
+  });
+
+  describe("When it receives [[], []]", () => {
+    test("Then it should return two empty strings '' and '' ", () => {
+      const board = [[], []];
+      const expected = `\n\n`;
 
       const correctResult = displayBoard(board);
 
@@ -49,6 +72,17 @@ describe("Given a checkNeighbors function", () => {
         [2, 3, 3],
         [3, 2, 2],
       ];
+
+      const correctResult = checkNeighbors(board);
+
+      expect(correctResult).toStrictEqual(expected);
+    });
+  });
+
+  describe("When it receives [[], [], []]", () => {
+    test("Then it should return [[], [], []]", () => {
+      const board = [[], [], []];
+      const expected = [[], [], []];
 
       const correctResult = checkNeighbors(board);
 

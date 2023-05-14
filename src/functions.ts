@@ -11,7 +11,7 @@ export const createBoard = (rows: number, cols: number) => {
 };
 
 export const displayBoard = (board: number[][]) => {
-  let displayedBoard = "";
+  let displayedBoard: string = "";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === 1) {
@@ -79,6 +79,9 @@ export const checkNeighbors = (board: number[][]) => {
   return newBoard;
 };
 
+const board: number[][] = [[], [], []];
+console.log(checkNeighbors(board));
+
 export const getNewCells = (board: number[][]) => {
   const newCellsBoard = checkNeighbors(board);
 
@@ -104,12 +107,3 @@ export const getNewCells = (board: number[][]) => {
 
   return board;
 };
-
-const board: number[][] = [
-  [0, 0, 1, 0, 1],
-  [1, 1, 0, 1, 1],
-  [0, 1, 0, 1, 0],
-  [0, 0, 0, 0, 0],
-];
-
-console.log(getNewCells(board));
