@@ -1,22 +1,88 @@
-let board: number[][];
-
-export const createBoard = (cols: number, rows: number) => {
-  let printValue: string = "";
-  for (let i = 0; i < cols; i++) {
+/* eslint-disable complexity */
+export const createBoard = (rows: number, cols: number) => {
+  const board: number[][] = [];
+  for (let i = 0; i < rows; i++) {
     board[i] = [];
-    for (let j = 0; j < rows; j++) {
+    for (let j = 0; j < cols; j++) {
       board[i][j] = Math.floor(Math.random() * 2);
-      if (board[i][j] === 0) {
-        printValue += " M ";
+    }
+  }
+
+  return board;
+};
+
+export const displayBoard = (board: number[][]) => {
+  createBoard(7, 7);
+  console.clear();
+
+  let displayedBoard = "";
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === 1) {
+        displayedBoard += " V ";
       }
 
-      if (board[i][j] === 1) {
-        printValue += " V ";
+      if (board[i][j] === 0) {
+        displayedBoard += " M ";
       }
     }
 
-    printValue += "\n";
+    displayedBoard += "\n";
   }
 
-  return printValue;
+  return displayedBoard;
 };
+
+const checkNeighbors = (board: number[][]) => {
+  const newBoard: number[][] = [];
+
+  for (let i = 0; i < board.length; i++) {
+    const neighbors: number[] = [];
+
+    for (let j = 0; j < board[i].length; j++) {
+      let count = 0;
+
+      if (board[i - 1] && board[i - 1][j - 1] === 1) {
+        count++;
+      }
+
+      if (board[i - 1] && board[i - 1][j] === 1) {
+        count++;
+      }
+
+      if (board[i - 1] && board[i - 1][j + 1] === 1) {
+        count++;
+      }
+
+      if (board[i][j - 1] && board[i][j - 1] === 1) {
+        count++;
+      }
+
+      if (board[i][j + 1] && board[i][j + 1] === 1) {
+        count++;
+      }
+
+      if (board[i + 1] && board[i + 1][j - 1] === 1) {
+        count++;
+      }
+
+      if (board[i + 1] && board[i + 1][j] === 1) {
+        count++;
+      }
+
+      if (board[i + 1] && board[i + 1][j + 1] === 1) {
+        count++;
+      }
+
+      neighbors.push(count);
+    }
+
+    newBoard.push(neighbors);
+  }
+
+  return newBoard;
+};
+
+const board = createBoard(5, 5);
+console.log(board);
+console.log(checkNeighbors(board));
