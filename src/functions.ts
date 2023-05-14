@@ -12,18 +12,15 @@ export const createBoard = (rows: number, cols: number) => {
 };
 
 export const displayBoard = (board: number[][]) => {
-  createBoard(7, 7);
-  console.clear();
-
   let displayedBoard = "";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === 1) {
-        displayedBoard += " V ";
+        displayedBoard += "⬜";
       }
 
       if (board[i][j] === 0) {
-        displayedBoard += " M ";
+        displayedBoard += "⬛";
       }
     }
 
@@ -33,7 +30,7 @@ export const displayBoard = (board: number[][]) => {
   return displayedBoard;
 };
 
-const checkNeighbors = (board: number[][]) => {
+export const checkNeighbors = (board: number[][]) => {
   const newBoard: number[][] = [];
 
   for (let i = 0; i < board.length; i++) {
@@ -82,7 +79,3 @@ const checkNeighbors = (board: number[][]) => {
 
   return newBoard;
 };
-
-const board = createBoard(5, 5);
-console.log(board);
-console.log(checkNeighbors(board));

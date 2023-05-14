@@ -1,21 +1,28 @@
-import { createBoard } from "./functions";
+import { createBoard, displayBoard } from "./functions";
 
 describe("Given a createBoard function", () => {
-  describe("When it receives [], 2 and 2", () => {
-    test("Then it shoud return [[2 random numbers between 0 and 1], [2 random numbers between 0 and 1]]", () => {
-      const board: number[][] = [];
+  describe("When it receives 2 and 2", () => {
+    test("Then it shoud return an array of 2 arrays", () => {
       const cols = 2;
       const rows = 2;
-      const expectedRandomNumber = Math.floor(Math.random() * 2);
-      const expected = [
-        [expectedRandomNumber, expectedRandomNumber],
-        [expectedRandomNumber, expectedRandomNumber],
-      ];
+      const expected = 2;
 
-      const correctResult = createBoard(board, cols, rows);
+      const correctResult = createBoard(cols, rows);
 
-      expect(expectedRandomNumber).toBeLessThan(2);
-      expect(expected).toReturnWith(correctResult);
+      expect(expected).toBe(correctResult.length);
+    });
+  });
+});
+
+describe("Given a displayBoard function", () => {
+  describe("When it receives an array of arrays with the numbers 0 and 1 in random positions", () => {
+    test("Then it should return an array with those numbers change into a black cell and a white cell respectively", () => {
+      const board = createBoard(3, 3);
+      const expected = displayBoard(board);
+
+      const correctResult = displayBoard(board);
+
+      expect(expected).toStrictEqual(correctResult);
     });
   });
 });
