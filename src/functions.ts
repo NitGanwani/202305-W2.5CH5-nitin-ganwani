@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 export const createBoard = (rows: number, cols: number) => {
   const board: number[][] = [];
   for (let i = 0; i < rows; i++) {
@@ -79,3 +78,35 @@ export const checkNeighbors = (board: number[][]) => {
 
   return newBoard;
 };
+
+export const getNewCells = (board: number[][]) => {
+  const newCellsBoard = checkNeighbors(board);
+
+  for (let i = 0; i < newCellsBoard.length; i++) {
+    for (let j = 0; j < newCellsBoard[i].length; j++) {
+      if (newCellsBoard[i][j] === 2) {
+        continue;
+      }
+
+      if (newCellsBoard[i][j] === 3) {
+        board[i][j] = 1;
+      }
+
+      if (newCellsBoard[i][j] < 2) {
+        board[i][j] = 0;
+      }
+
+      if (newCellsBoard[i][j] > 3) {
+        board[i][j] = 0;
+      }
+    }
+  }
+
+  return board;
+};
+
+const board = createBoard(5, 5);
+console.log(board);
+checkNeighbors(board);
+getNewCells(board);
+console.log(displayBoard(board));
