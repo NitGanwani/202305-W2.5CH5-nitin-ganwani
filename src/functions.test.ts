@@ -1,28 +1,53 @@
-import { createBoard, displayBoard } from "./functions";
+import { checkNeighbors, createBoard, displayBoard } from "./functions";
 
 describe("Given a createBoard function", () => {
   describe("When it receives 2 and 2", () => {
-    test("Then it shoud return an array of 2 arrays", () => {
-      const cols = 2;
+    test("Then it should return an array of 2 rows and 2 columns", () => {
       const rows = 2;
-      const expected = createBoard(rows, cols).length;
+      const cols = 2;
 
       const correctResult = createBoard(rows, cols);
 
-      expect(expected).toBe(correctResult.length);
+      expect(correctResult.length).toBe(2);
+      expect(correctResult[0].length).toBe(2);
     });
   });
 });
 
 describe("Given a displayBoard function", () => {
-  describe("When it receives an array of arrays with the numbers 0 and 1 in random positions", () => {
-    test("Then it should return an array with those numbers change into a black cell and a white cell respectively", () => {
-      const board = createBoard(3, 3);
-      const expected = displayBoard(board);
+  describe("When it receives an array of arrays [[0, 0, 1], [1, 1, 0], [0, 1, 0]]", () => {
+    test("Then it should return ⬛⬛⬜\n⬜⬜⬛\n⬛⬜⬛", () => {
+      const board: number[][] = [
+        [0, 0, 1],
+        [1, 1, 0],
+        [0, 1, 0],
+      ];
+      const expected = `⬛⬛⬜\n⬜⬜⬛\n⬛⬜⬛\n`;
 
       const correctResult = displayBoard(board);
 
-      expect(expected).toStrictEqual(correctResult);
+      expect(correctResult).toBe(expected);
+    });
+  });
+});
+
+describe("Given a checkNeighbors function", () => {
+  describe("When it receives an array of arrays [[0, 0, 1], [1, 1, 0], [0, 1, 0]]", () => {
+    test("Then it should return [[ 2, 3, 1 ], [ 2, 3, 3 ], [ 3, 2, 2 ]]", () => {
+      const board: number[][] = [
+        [0, 0, 1],
+        [1, 1, 0],
+        [0, 1, 0],
+      ];
+      const expected = [
+        [2, 3, 1],
+        [2, 3, 3],
+        [3, 2, 2],
+      ];
+
+      const correctResult = checkNeighbors(board);
+
+      expect(correctResult).toStrictEqual(expected);
     });
   });
 });
