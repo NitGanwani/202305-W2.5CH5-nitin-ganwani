@@ -1,24 +1,17 @@
-export const createBoard = (board: number[][], cols: number, rows: number) => {
+let board: number[][];
+
+export const createBoard = (cols: number, rows: number) => {
+  let printValue: string = "";
   for (let i = 0; i < cols; i++) {
     board[i] = [];
     for (let j = 0; j < rows; j++) {
       board[i][j] = Math.floor(Math.random() * 2);
-    }
-  }
-
-  return board;
-};
-
-const displayBoard = (board: number[][]) => {
-  let printValue: string = "";
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === 0) {
-        printValue += " 0 ";
+        printValue += " M ";
       }
 
       if (board[i][j] === 1) {
-        printValue += " 1 ";
+        printValue += " V ";
       }
     }
 
@@ -28,4 +21,22 @@ const displayBoard = (board: number[][]) => {
   return printValue;
 };
 
-console.log(displayBoard(createBoard([], 6, 6)));
+let cols: number;
+let rows: number;
+
+const checkNeighbors = (x: number, y: number) => {
+  let count = 0;
+  for (let i = -1; i < 2; i++) {
+    for (let j = -1; j < 2; j++) {
+      const col = (x + i + cols) % cols;
+      const row = (y + j + rows) % rows;
+      count += board[col][row];
+    }
+  }
+
+  count -= board[x][y];
+  return count;
+};
+
+createBoard(5, 5);
+console.log(checkNeighbors(5, 5));
