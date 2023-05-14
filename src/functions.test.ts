@@ -1,4 +1,9 @@
-import { checkNeighbors, createBoard, displayBoard } from "./functions";
+import {
+  checkNeighbors,
+  createBoard,
+  displayBoard,
+  getNewCells,
+} from "./functions";
 
 describe("Given a createBoard function", () => {
   describe("When it receives 2 and 2", () => {
@@ -46,6 +51,29 @@ describe("Given a checkNeighbors function", () => {
       ];
 
       const correctResult = checkNeighbors(board);
+
+      expect(correctResult).toStrictEqual(expected);
+    });
+  });
+});
+
+describe("Given a getNewCells function", () => {
+  describe("When it receives an array of arrays [[0, 0, 1, 0, 1], [1, 1, 0, 1, 1], [0, 1, 0, 1, 0], [0, 0, 0, 0, 0]]", () => {
+    test("Then it should return [[ 0, 1, 1, 0, 1 ], [ 1, 1, 0, 0, 1 ], [ 1, 1, 0, 1, 1 ], [0, 0, 0, 0, 0]]", () => {
+      const board: number[][] = [
+        [0, 0, 1, 0, 1],
+        [1, 1, 0, 1, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 0, 0],
+      ];
+      const expected = [
+        [0, 1, 1, 0, 1],
+        [1, 1, 0, 0, 1],
+        [1, 1, 0, 1, 1],
+        [0, 0, 0, 0, 0],
+      ];
+
+      const correctResult = getNewCells(board);
 
       expect(correctResult).toStrictEqual(expected);
     });
