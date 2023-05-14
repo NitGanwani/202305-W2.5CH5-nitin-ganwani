@@ -5,9 +5,9 @@ describe("Given a createBoard function", () => {
     test("Then it shoud return an array of 2 arrays", () => {
       const cols = 2;
       const rows = 2;
-      const expected = 2;
+      const expected = createBoard(rows, cols).length;
 
-      const correctResult = createBoard(cols, rows);
+      const correctResult = createBoard(rows, cols);
 
       expect(expected).toBe(correctResult.length);
     });
